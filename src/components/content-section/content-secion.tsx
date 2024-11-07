@@ -2,14 +2,14 @@ import React, { ReactNode } from 'react';
 import styles from './content-section.module.scss';
 
 interface ContentSectionProps {
-    title: string;
-    content: ReactNode;
-    image?: ReactNode | undefined;
-    imagePosition?: 'left' | 'right' | undefined;
+    title?: string;
+    children: ReactNode;
+    image?: ReactNode;
+    imagePosition?: 'left' | 'right';
     renderAsPaper?: boolean;
 }
 
-const ContentSection: React.FC<ContentSectionProps> = ({ title, content, image, imagePosition, renderAsPaper }) => {
+const ContentSection: React.FC<ContentSectionProps> = ({ title, children, image, imagePosition, renderAsPaper }) => {
     return (
         <section className={styles['content-section']}>
             <div className={`${styles['content-section__container']} ${renderAsPaper ? styles['content-section__paper'] : ''}`}>
@@ -20,7 +20,7 @@ const ContentSection: React.FC<ContentSectionProps> = ({ title, content, image, 
                 )}
                 <div className={styles['content-section__text']}>
                     <h2>{title}</h2>
-                    <div>{content}</div>
+                    <div>{children}</div>
                 </div>
                 {!!image && imagePosition === 'right' && (
                     <div className={styles['content-section__image']}>
